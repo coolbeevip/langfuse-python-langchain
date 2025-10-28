@@ -1,11 +1,14 @@
 [tool.poetry]
-name = "langfuse"
+name = "langfuse-langchain"
 
 version = "2.60.10.1"
 description = "A client library for accessing langfuse"
 authors = ["langfuse <developers@langfuse.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+  { include = "langfuse" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
