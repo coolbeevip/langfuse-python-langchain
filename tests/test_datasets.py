@@ -5,7 +5,9 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import List
 
 import pytest
-from langchain import LLMChain, OpenAI, PromptTemplate
+from langchain.chains import LLMChain
+from langchain_openai import OpenAI
+from langchain_core.prompts import PromptTemplate
 
 from langfuse import Langfuse
 from langfuse.api.resources.commons.types.observation import Observation

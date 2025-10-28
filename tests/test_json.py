@@ -8,7 +8,7 @@ import uuid
 from bson import ObjectId
 
 import pytest
-from langchain.schema.messages import HumanMessage
+from langchain.messages import HumanMessage
 from pydantic import BaseModel
 
 import langfuse
@@ -78,7 +78,7 @@ def test_json_decoder_without_langchain_serializer_with_langchain_message():
         import langchain  # noqa
 
     with pytest.raises(ImportError):
-        from langchain.load.serializable import Serializable  # noqa
+        from langchain_core.load.serializable import Serializable  # noqa
 
     importlib.reload(langfuse)
     obj = TestModel(foo="bar", bar=datetime(2021, 1, 1, 0, 0, 0, tzinfo=timezone.utc))
@@ -92,7 +92,7 @@ def test_json_decoder_without_langchain_serializer_with_none():
         import langchain  # noqa
 
     with pytest.raises(ImportError):
-        from langchain.load.serializable import Serializable  # noqa
+        from langchain_core.load.serializable import Serializable  # noqa
 
     importlib.reload(langfuse)
     result = json.dumps(None, cls=EventSerializer)

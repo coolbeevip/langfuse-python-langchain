@@ -2,7 +2,7 @@ from typing import Any
 from unittest.mock import MagicMock
 
 import pytest
-from langchain.schema.messages import HumanMessage
+from langchain.messages import HumanMessage
 from langchain_anthropic import Anthropic, ChatAnthropic
 from langchain_aws import BedrockLLM, ChatBedrock
 from langchain_community.chat_models import (

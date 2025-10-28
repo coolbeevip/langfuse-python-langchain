@@ -6,13 +6,6 @@ from collections import defaultdict
 import httpx
 import pydantic
 
-try:  # Test that langchain is installed before proceeding
-    import langchain  # noqa
-except ImportError as e:
-    log = logging.getLogger("langfuse")
-    log.error(
-        f"Could not import langchain. The langchain integration will not work. {e}"
-    )
 from typing import Any, Dict, List, Optional, Sequence, Set, Type, Union, cast
 from uuid import UUID, uuid4
 
@@ -28,24 +21,48 @@ from langfuse.utils import _get_timestamp
 from langfuse.utils.base_callback_handler import LangfuseBaseCallbackHandler
 
 try:
-    from langchain.callbacks.base import (
-        BaseCallbackHandler as LangchainBaseCallbackHandler,
-    )
-    from langchain.schema.agent import AgentAction, AgentFinish
-    from langchain.schema.document import Document
-    from langchain_core.messages import (
-        AIMessage,
-        BaseMessage,
-        ChatMessage,
-        FunctionMessage,
-        HumanMessage,
-        SystemMessage,
-        ToolMessage,
-    )
-    from langchain_core.outputs import (
-        ChatGeneration,
-        LLMResult,
-    )
+    import langchain  # noqa
+
+    if langchain.__version__.startswith("1"):
+        # Langchain v1
+        from langchain_core.callbacks import (
+            BaseCallbackHandler as LangchainBaseCallbackHandler,
+        )
+        from langchain_core.agents import AgentAction, AgentFinish
+        from langchain_core.documents import Document
+        from langchain_core.messages import (
+            AIMessage,
+            BaseMessage,
+            ChatMessage,
+            FunctionMessage,
+            HumanMessage,
+            SystemMessage,
+            ToolMessage,
+        )
+        from langchain_core.outputs import (
+            ChatGeneration,
+            LLMResult,
+        )
+    else:
+        # Langchain v0
+        from langchain.callbacks.base import (
+            BaseCallbackHandler as LangchainBaseCallbackHandler,
+        )
+        from langchain.schema.agent import AgentAction, AgentFinish
+        from langchain.schema.document import Document
+        from langchain_core.messages import (
+            AIMessage,
+            BaseMessage,
+            ChatMessage,
+            FunctionMessage,
+            HumanMessage,
+            SystemMessage,
+            ToolMessage,
+        )
+        from langchain_core.outputs import (
+            ChatGeneration,
+            LLMResult,
+        )
 except ImportError:
     raise ModuleNotFoundError(
         "Please install langchain to use the Langfuse langchain integration: 'pip install langchain'"

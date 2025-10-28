@@ -6,7 +6,7 @@ from time import sleep
 from typing import Optional
 
 import pytest
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from langfuse.decorators import langfuse_context, observe
