@@ -3,6 +3,10 @@
 # Why should you use this library?
 This library builds upon Langfuse [v2.60.10](https://github.com/langfuse/langfuse-python/tree/v2.60.10) and introduces full compatibility with Langchain v1
 
+```shell
+pip install langfuse==2.60.10.1
+```
+
 # Langfuse Python SDK
 
 [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
